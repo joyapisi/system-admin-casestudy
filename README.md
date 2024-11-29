@@ -3,13 +3,9 @@
 
 ## Question 1 
 
-Briefly describe the role of the following in networking environment. Draw the diagrammatic representation depicting the same. 
-•	VPN 
-•	MPLS 
-•	OSPF
-•	BGP 
+Briefly describe the role of the following in networking environment. Draw the diagrammatic representation depicting the same.  
 
-1. VPN (Virtual Private Network)
+a. **VPN (Virtual Private Network)**
 
 The role of a VPN is that it is used to provide encrypted security when external users are remotely accessing a private network. The type of security that a VPN offers includes ensuring authorised access, and secure data transmission through an encrypted format.
 
@@ -19,9 +15,9 @@ Below is a diagram depicting a remote entity securely connecting to a private ne
 <[Remote Entity/User/Device] ----> [VPN Tunnel] ----> [Private Network]
 ```
 
-2. MPLS (Multiprotocol Label Switching)
+b. **MPLS (Multiprotocol Label Switching)**
 
-The role of a MPLS is to direct data from one node to the next based on short path labels rather than long network addresses. It allows for efficient traffic management, offering faster data transmission, scalability, and better control over traffic routing. It is often used in large enterprise or service provider networks.
+An MPLS in a networking environment takes the role of using short path labels to transmit data from one node to another. It helps to avoid using long network addresses and ensures efficiency through quick transmission of data, management of traffic, trafic routing control and scalability.
 
 Diagram:
 
@@ -29,8 +25,8 @@ Diagram:
 [Client A] ----> [MPLS Network] ----> [Client B]
 ```
 
-3. OSPF (Open Shortest Path First)
-Role: OSPF is a link-state routing protocol used within an autonomous system to find the best path for data transmission. It dynamically adjusts to network changes and quickly adapts to new network conditions. OSPF is efficient and scalable, making it ideal for large networks.
+c. **OSPF (Open Shortest Path First)**
+OSPF works as a routing protocol that links states and is highly adaptable. It is ideal for large networks. It helps to find the best data transmission path in independent systems.
 
 Diagram:
 ```css
@@ -39,8 +35,8 @@ Diagram:
 [Router B] ---|  
 ```
 
-4. BGP (Border Gateway Protocol)
-Role: BGP is a path vector protocol used to exchange routing information between different autonomous systems (ASes) on the internet. It helps manage how data is routed between large-scale networks and ensures that data finds the most efficient path across the internet.
+d. **BGP (Border Gateway Protocol)**
+The role of a BGP is to set a standard way of communicating between path vectors when various autonomous systems (ASes) exchange routing information on the internet. A BGP is dominantly used in large-scale networks and ensures that data crosses through the most efficient path when being interchanged on the internet.
 
 ```css
 Diagram:
