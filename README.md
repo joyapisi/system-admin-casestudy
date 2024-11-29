@@ -3,23 +3,23 @@
 
 # 📗 Table of Contents
 
-- [🛜 Question 1](#one)
+1. [🛜 Question 1](#q1)
   - [🛠 VPN](#vpn)
   - [🛠 MPLS](#MPLS)
   - [🛠 OSPF](#OSPF)
   - [🛠 BGP](#BGP)
-- [🛜 Question 2](#q2)
+2. [🛜 Question 2](#q2)
   - [🛠 MPLS VPN with IPsec Encryption](#MPLS-IPsec)
   - [🛠 MPLS VPN Configuration Process](#MPLS-config)  
   - [🛠   A Configuration Example](#config-example)  
-- [🛜 Question 3](#q3)
+3. [🛜 Question 3](#q3)
   - [🛠   BGP Route Map Configuration](#BGP-Route-Map)  
   - [🛠   Question 3 a](#BGP-Attr)  
   - [🛠   Question 3 b](#Match-clause)  
   - [🛠   Question 3 c](#apply-route-map)  
   - [🛠   Question 3 d](#sample-BGP-config)  
 
-## Question 1 <a name="one"></a>
+## Question 1 <a name="q1"></a>
 
 Briefly describe the role of the following in networking environment. Draw the diagrammatic representation depicting the same.  
 
@@ -200,7 +200,7 @@ Since MPLS VPN is managed by a service provider, it's crucial to maintain good c
 
 Opting for MPLS VPN with IPsec encryption gives you a secure, scalable, and reliable solution for connecting NCBA with the third-party provider in Johannesburg. This setup keeps traffic isolated, protecting confidentiality, and uses the power of the MPLS backbone to handle routing efficiently. By combining MPLS with IPsec, you’re ensuring both strong security and high performance for the B2B integration.
 
-# Question 3 <a name="q1"></a>
+# Question 3 <a name="q3"></a>
 
 Suppose AS 10 is a multihomed customer of AS 20 and AS 30. AS 10 receives most of its incoming traffic over AS 30 and wants to employ traffic engineering techniques to shift some of this traffic from AS 30 to AS 20. For this purpose, a route map is created. Assume that the following excerpt of the BGP table is a good representation of the BGP table as a whole: 
 
