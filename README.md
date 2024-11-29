@@ -1,7 +1,25 @@
 # NCBA system-admin-casestudy
 <img src="images/logo.png" alt="Project Logo" width="120" height="120">
 
-## Question 1 
+# 📗 Table of Contents
+
+- [🛜 Question 1](#one)
+  - [🛠 VPN](#vpn)
+  - [🛠 MPLS](#MPLS)
+  - [🛠 OSPF](#OSPF)
+  - [🛠 BGP](#BGP)
+- [🛜 Question 2](#q2)
+  - [🛠 MPLS VPN with IPsec Encryption](#MPLS-IPsec)
+  - [🛠 MPLS VPN Configuration Process](#MPLS-config)  
+  - [🛠   A Configuration Example](#config-example)  
+- [🛜 Question 3](#q3)
+  - [🛠   BGP Route Map Configuration](#BGP-Route-Map)  
+  - [🛠   Question 3 a](#BGP-Attr)  
+  - [🛠   Question 3 b](#Match-clause)  
+  - [🛠   Question 3 c](#apply-route-map)  
+  - [🛠   Question 3 d](#sample-BGP-config)  
+
+## Question 1 <a name="one"></a>
 
 Briefly describe the role of the following in networking environment. Draw the diagrammatic representation depicting the same.  
 
@@ -44,9 +62,9 @@ Diagram:
 [AS1] ---> [BGP] ---> [AS2]
 ```
 
-These technologies work together to enable secure, efficient, and flexible networking, with VPNs providing security, MPLS optimizing traffic, OSPF handling internal routing, and BGP managing inter-network routing.
+In summary, these technologies work together to ensure there is security, scalability, and efficiency in how systems work.
 
-## Question 2
+## Question 2 <a name="q2"></a> 
  
 **Scenario:**  
 NCBA wishes to integrate Business-to-Business service with a third party located in Johannesburg, which is secure. 
@@ -62,40 +80,43 @@ NCBA wishes to integrate Business-to-Business service with a third party located
 	
 any other device to use for connectivity 
 
-### MPLS VPN with IPsec Encryption
-MPLS VPN is a secure, scalable, and high-performance way to connect multiple sites over a service provider’s network. When combined with IPsec encryption, it can ensure the confidentiality and integrity of the data being exchanged between NCBA and the third party.
+## MPLS VPN with IPsec Encryption <a name="MPLS-IPsec"></a>
+For this question, I shall use MPLS VPN which provides high performance, security, and scalability. MPLS efficiently connects multiple sites over a service provider’s network. When combined with IPsec encryption, it would ensure the confidentiality and integrity of the data being exchanged between NCBA and the third party.
 
-#### Why MPLS VPN?
+#### Benefits/Reasons for Using MPLS VPN in this Scenario
 
 __Security:__ MPLS VPNs provide private, isolated paths across a service provider’s network, reducing exposure to potential external threats. When combined with IPsec, it ensures end-to-end encryption for data security.
+
 __Scalability:__ MPLS is ideal for large-scale networks and can easily support additional business partners or branch offices in the future.
+
 __Performance:__ MPLS provides efficient traffic management with Quality of Service (QoS) support to ensure high-priority traffic like B2B services is not delayed or dropped.
+
 __Routing:__ MPLS simplifies the routing configuration by using labels instead of relying on traditional IP routing. This enables faster routing decisions.
 Key Networking Aspects to Consider
 
-## MPLS VPN Configuration:
+## MPLS VPN Configuration Process <a name="MPLS-config"></a>
 
-Layer 3 MPLS VPN is used to create secure, isolated routes for NCBA and the third-party provider. This ensures that even though traffic might pass through a common service provider’s network, each customer’s traffic remains private.
-IPsec encryption is used to protect the data end-to-end between the sites, preventing unauthorized access.
-Routing Protocols:
+Setting up an MPLS VPN is a great way to create secure, isolated routes for NCBA and the third-party provider, ensuring that even though their traffic may travel through a shared service provider’s network, it remains private and protected. This means that sensitive information stays secure, even in a shared environment. We use IPsec encryption to safeguard the data between the two sites, so there’s no risk of unauthorized access.
 
-BGP (Border Gateway Protocol) is typically used to exchange routing information between different MPLS VPN networks. It’s ideal for large-scale environments, as it can handle the dynamic nature of routing in MPLS.
-For internal communication, OSPF (Open Shortest Path First) can be used for routing within NCBA’s network and the third-party provider’s network.
-Security:
+### Routing Protocols
 
-Authentication can be done using pre-shared keys or digital certificates for IPsec.
-Access Control Lists (ACLs) should be configured to restrict traffic between NCBA and the third-party provider.
-Network Design:
+When it comes to exchanging routing information across different MPLS VPN networks, we typically rely on **BGP (Border Gateway Protocol)**. BGP is perfect for large environments because it can dynamically adapt to changes in the network and keep everything running smoothly. Inside NCBA's network and between the third-party provider's systems, we can use **OSPF (Open Shortest Path First)** for efficient routing.
 
-MPLS VPN can ensure that both NCBA and the third party’s networks are logically separated but can still exchange data over a private and secure connection.
-Quality of Service (QoS) can be implemented to ensure that mission-critical B2B traffic receives priority over other types of traffic.
+### Security
 
-## A Configuration Example
+Security is a top priority, so we’ll set up authentication using either **pre-shared keys** or **digital certificates** for IPsec encryption. To further secure the environment, **Access Control Lists (ACLs)** will be configured to restrict traffic, making sure that only authorized communication happens between NCBA and the third-party provider.
 
-1. MPLS Configuration on Router (Provider Edge)
-The MPLS provider’s router (PE router) needs to be configured to establish the MPLS VPN. Below is a simple configuration to set up the MPLS VPN with IPsec encryption for the tunnel:
+### Network Design
 
-``` 
+With MPLS VPN, we can keep NCBA’s network and the third party’s network logically separate, but still allow them to exchange data over a private and secure connection. And to ensure the most important B2B traffic gets priority, we can implement **Quality of Service (QoS)** to make sure mission-critical traffic gets through first, without delay.
+
+## A Configuration Example <a name="config-example"></a>
+
+1. **MPLS Configuration on Router (Provider Edge)**
+
+The provider’s MPLS router (PE router) will need to be configured to establish the MPLS VPN. Below is a simple configuration example to set up the MPLS VPN. It also entails IPsec encryption for a secure tunnel:
+
+```bash 
 Router# configure terminal
 Router(config)# interface GigabitEthernet0/0
 Router(config-if)# ip address 192.168.1.1 255.255.255.0
@@ -116,10 +137,10 @@ Router(config)# ip route vrf NCBA_VPN 0.0.0.0 0.0.0.0 192.168.1.2
 Router(config)# exit
 ```
 
-2. ASA Firewall Configuration for IPsec Encryption
+2. **ASA Firewall Configuration for IPsec Encryption**
 The ASA firewall will be used to establish IPsec encryption over the MPLS VPN. Below is a sample configuration for the ASA firewall:
 
-``` 
+```bash 
 asa# configure terminal
 asa(config)# interface Ethernet0/0
 asa(config-if)# nameif outside
@@ -142,10 +163,10 @@ asa(config-ipsec)# ikev1 pre-shared-key YourPreSharedKey
 asa(config-ipsec)# exit
 ``` 
 
-3. Switch Configuration
-Switch configuration remains the same, but it will support VLANs for internal segmentation and possibly for segregating traffic from NCBA and the third-party provider.
+3. **Switch Configuration**
+Switch configuration remains the same, but it will support VLANs for internal segmentation and possibly for seperate traffic from NCBA and the third-party provider.
 
-``` 
+```bash 
 Switch# configure terminal
 Switch(config)# vlan 10
 Switch(config-vlan)# name B2B_VLAN
@@ -157,28 +178,29 @@ Switch(config-if-range)# switchport access vlan 10
 Switch(config-if-range)# exit
 ``` 
 
-#### Additional Considerations for MPLS VPN with IPsec:
+## Additional Considerations for MPLS VPN with IPsec:
 
-__Bandwidth and Traffic Shaping:__
+**Bandwidth and Traffic Shaping:**
 
-Ensure that the bandwidth is sufficient to support the traffic load between the two parties, and use traffic shaping or policing techniques to control bandwidth usage.
-High Availability:
+Make sure there’s enough bandwidth to handle the expected traffic load between NCBA and the third-party provider. It’s also a good idea to use traffic shaping or policing to manage and control bandwidth usage, ensuring smooth performance even during peak times.
 
-Implement redundant MPLS links between NCBA and the third-party provider to ensure high availability in case one link fails.
-Consider using HSRP (Hot Standby Router Protocol) or VRRP (Virtual Router Redundancy Protocol) for router redundancy.
+**High Availability:**
 
-__Monitoring and Logging:__
+To minimize any potential downtime, it’s important to set up redundant MPLS links between NCBA and the third party. This way, if one link goes down, the other can pick up the load. Consider using HSRP (Hot Standby Router Protocol) or VRRP (Virtual Router Redundancy Protocol) for router redundancy, which adds an extra layer of reliability.
 
-Use SNMP (Simple Network Management Protocol) to monitor network devices for performance and status.
-Configure logging on ASA and routers to track connection status, security incidents, and troubleshooting.
-Service Provider Coordination:
+**Monitoring and Logging:**
 
-Since MPLS VPN is a managed service by a service provider, coordination with the service provider is necessary to ensure the correct configuration of the VPN service between NCBA’s and the third-party’s networks.
+Stay on top of network performance by using SNMP (Simple Network Management Protocol) to monitor devices and track their status. It’s also wise to configure logging on both the ASA firewall and routers so you can easily track connection issues, security events, or troubleshoot any problems that arise.
+
+**Service Provider Coordination:**
+
+Since MPLS VPN is managed by a service provider, it's crucial to maintain good communication and coordination with them. This will ensure that everything is set up correctly and the VPN service between NCBA and the third-party provider runs smoothly.
 
 ## Conclusion:
-Using MPLS VPN with IPsec encryption provides a secure, scalable, and reliable solution for connecting NCBA to the third-party provider in Johannesburg. This approach isolates traffic, ensuring confidentiality, and also leverages the MPLS backbone for efficient routing. By combining MPLS with IPsec, this solution guarantees both security and performance for the B2B integration.
 
-# Question 3
+Opting for MPLS VPN with IPsec encryption gives you a secure, scalable, and reliable solution for connecting NCBA with the third-party provider in Johannesburg. This setup keeps traffic isolated, protecting confidentiality, and uses the power of the MPLS backbone to handle routing efficiently. By combining MPLS with IPsec, you’re ensuring both strong security and high performance for the B2B integration.
+
+# Question 3 <a name="q1"></a>
 
 Suppose AS 10 is a multihomed customer of AS 20 and AS 30. AS 10 receives most of its incoming traffic over AS 30 and wants to employ traffic engineering techniques to shift some of this traffic from AS 30 to AS 20. For this purpose, a route map is created. Assume that the following excerpt of the BGP table is a good representation of the BGP table as a whole: 
 
@@ -191,95 +213,94 @@ Suppose AS 10 is a multihomed customer of AS 20 and AS 30. AS 10 receives most o
 | **12.31.159.0/24** | 213.24.40.91 | 0      | 100    | *      | 0 20 209 7018 20457 i               |
 | **12.31.159.0/24** | 62.93.19.27  | 0      | 0      | *      | 30 4181 20457 i                      |
 
-### a. Which BGP attributes would AS 10 possibly like to change in the route map "set" clause, in what way (higher/lower, longer/shorter), and which would be the best choice?
+# BGP Route Map Configuration <a name="BGP-Route-Map"></a>
 
-In this case, AS 10 wants to shift some of its traffic from AS 30 to AS 20. The BGP attributes that AS 10 can modify in the "set" clause of the route map include:
+### a. Which BGP attributes would AS 10 possibly like to change in the route map "set" clause, in what way (higher/lower, longer/shorter), and which would be the best choice? <a name="BGP-Attr"></a>
 
-__Weight:__
+In this scenario, AS 10 wants to shift some of its traffic from AS 30 to AS 20. The key BGP attributes that AS 10 can tweak in the "set" clause of the route map include:
 
-What to change: The Weight is a Cisco-specific BGP attribute that helps determine the preferred path when multiple routes are available.
-How to change: To shift traffic from AS 30 to AS 20, AS 10 can set a higher weight for routes learned from AS 20, making them more preferred.
-Best choice: This is the best choice for traffic engineering because Weight is local to the router and directly impacts route selection.
+#### **Weight:**
+- **What to change:** Weight is a Cisco-specific BGP attribute used to decide which path is preferred when multiple routes exist. 
+- **How to change:** To shift more traffic to AS 20, AS 10 can assign a **higher weight** to routes learned from AS 20, making them the preferred option over routes from AS 30.
+- **Best choice:** Weight is the best option here because it's local to the router and directly influences route selection, making it ideal for traffic engineering.
 
-__Local Preference (LocPrf):__
+#### **Local Preference (LocPrf):**
+- **What to change:** Local Preference is used to influence the exit path from AS 10. A higher value indicates a more preferred path.
+- **How to change:** AS 10 can increase the LocPrf value for routes learned from AS 20, making them more attractive than those from AS 30.
+- **Best choice:** While LocPrf is useful for influencing outbound traffic, **Weight** is likely a better option for this scenario because AS 10 is trying to influence **incoming** traffic.
 
-What to change: Local Preference is used to indicate the preferred exit point from AS 10. The higher the value, the more preferred the path.
-How to change: AS 10 can increase the LocPrf value for routes learned from AS 20, which would make them more preferred than routes from AS 30.
-Best choice: Local Preference is typically used for influencing outbound traffic from AS 10, and since AS 10 wants to shift incoming traffic, Weight might be more effective for this scenario.
+#### **AS Path:**
+- **What to change:** The AS Path can be manipulated by changing its length, which indirectly affects route selection.
+- **How to change:** AS 10 could prepend AS 30’s AS number to routes received from AS 30, making them appear longer and less attractive.
+- **Best choice:** While modifying the AS Path can help influence routing, it’s less direct and effective than adjusting Weight or LocPrf for this case.
 
-__AS Path:__
+**Summary:** The best attribute to modify here is **Weight**, as it will have a local effect on path selection for incoming routes from AS 30, steering traffic toward AS 20 without affecting other BGP peers.
 
-What to change: Changing the AS Path is possible by manipulating the AS path length.
-How to change: To make AS 20's path more attractive, AS 10 could prepend AS 30's AS number to the path for routes received from AS 30.
-Best choice: While this can influence routing decisions, modifying the AS Path is less direct than using Weight and LocPrf for this specific scenario.
-In summary, the best attribute to change is Weight because it will locally affect the selection of the path from AS 20 over AS 30 without impacting other BGP peers.
+### b. Should a "match" clause be used in this route map? <a name="Match-clause"></a>
 
-### b. Should a "match" clause be used in this route map?
-Yes, a "match" clause should be used in this route map to specify the conditions under which the attributes should be changed. The match clause will define which prefixes or routes from AS 30 (that AS 10 wants to influence) will be affected by the changes in the set clause.
+Yes, a "match" clause should be used to define the specific conditions under which the attributes are adjusted. This will allow AS 10 to target routes that are coming from AS 30, ensuring only the relevant routes are affected.
 
-For example, AS 10 might want to match specific prefixes (e.g., 12.31.126.0/24) that are being advertised by AS 30.
-A possible match condition could be matching the prefix or AS path of routes received from AS 30.
-The match clause can look for specific attributes such as the next hop or AS path to ensure that only relevant routes are modified.
+For example, AS 10 may want to match specific prefixes like `12.31.126.0/24` that are being advertised by AS 30. The match clause will look for attributes such as the **prefix** or **AS path** to identify the routes that need to be changed.
 
-### c. Should the route map be applied to and explain the reason?
+### c. Should the route map be applied to and explain the reason? <a name="apply-route-map"></a>
+
 The route map should be applied to the following BGP sessions:
 
-The BGP session with AS 30 "in":
+#### **The BGP session with AS 30 "in":**
+- **Reason:** Since AS 10 receives most of its traffic from AS 30, applying the route map to the incoming session allows AS 10 to modify the routes it learns from AS 30. By adjusting the Weight or LocPrf, AS 10 can make routes from AS 20 more attractive.
 
-Reason: AS 10 receives most of its incoming traffic from AS 30. By applying the route map to the incoming session, AS 10 can modify the routes learned from AS 30 and adjust the Weight (or LocPrf) to make routes from AS 20 more preferred.
-The BGP session with AS 30 "out":
+#### **The BGP session with AS 30 "out":**
+- **Reason:** If AS 10 is advertising routes to AS 30, applying the route map to the outgoing session can influence how AS 30 perceives the return path to AS 10. This helps guide the traffic back through AS 20.
 
-Reason: If AS 10 is redistributing routes to AS 30, the route map can also be applied to the outgoing session to manipulate how AS 30 perceives AS 10's advertised routes. This can be used to influence AS 30's selection of the return path to AS 10.
-Note: The route map should not be applied to the BGP sessions with AS 20 because AS 10 is receiving traffic from AS 20, and the purpose of the route map is to modify the incoming traffic from AS 30 to shift it toward AS 20. Applying the route map to the AS 20 sessions would not serve this purpose.
+**Note:** The route map should **not** be applied to the BGP sessions with AS 20, since AS 10 is receiving traffic from AS 20. The route map’s goal is to influence incoming traffic from AS 30, so applying it to AS 20 wouldn’t serve this purpose.
 
-### d. Do a sample configuration of BGP with the following details:
-Remote AS number 7890
-Neighbour 1.2.3.4
-Network 5.6.7.8/25
-Null advertisement from your route
+### d. Do a sample configuration of BGP with the following details: <a name="sample-BGP-config"></a>
 
-Below, I havve given a sample BGP configuration to achieve this:
+- Remote AS number: 7890
+- Neighbor: 1.2.3.4
+- Network: 5.6.7.8/25
+- Null advertisement for a specific route
 
-```
+Here's a sample BGP configuration that achieves the above:
+
+```bash
 router bgp 10
-
   bgp log-neighbor-changes
   neighbor 1.2.3.4 remote-as 7890
   network 5.6.7.8 mask 255.255.255.128
   neighbor 1.2.3.4 route-map NULL-ADVERT in
 
-! Create a route map for null advertisement (discard a specific route)
+! Create a route map to discard a specific route (Null advertisement)
 route-map NULL-ADVERT deny 10
   match ip address prefix-list BLOCK-ROUTE
 route-map NULL-ADVERT permit 20
 
-! Define a prefix list to block specific route
+! Define a prefix list to block a specific route
 ip prefix-list BLOCK-ROUTE seq 5 deny 12.31.126.0/24
 ip prefix-list BLOCK-ROUTE seq 10 permit 0.0.0.0/0 le 32
-``` 
+```
+### Explanation of Configuration: <a name="config-explained"></a>
 
-### Explanation of Configuration:
-- **router bgp 10:**
-Configures BGP for AS 10.
+- **router bgp 10:**  
+  This command sets up BGP for Autonomous System (AS) 10. It tells the router to begin configuring BGP within that AS.
 
-- **neighbor 1.2.3.4 remote-as 7890:** 
-Defines the BGP neighbor with IP 1.2.3.4 and remote AS 7890.
+- **neighbor 1.2.3.4 remote-as 7890:**  
+  Here, we define a BGP neighbor with the IP address 1.2.3.4 and assign it to AS 7890. This establishes a connection with a peer router.
 
-- **network 5.6.7.8 mask 255.255.255.128:** 
-Advertises the network 5.6.7.8/25 to BGP.
+- **network 5.6.7.8 mask 255.255.255.128:**  
+  This command advertises the 5.6.7.8/25 network to BGP, making it known to other BGP routers in the network.
 
-- **route-map NULL-ADVERT in:**
-Applies the route map NULL-ADVERT to incoming routes from the neighbor.
+- **route-map NULL-ADVERT in:**  
+  We apply a route map called NULL-ADVERT to incoming routes from the defined neighbor. The map controls how routes are handled as they are received.
 
-- **route-map NULL-ADVERT deny 10:** 
-Denies the route 12.31.126.0/24 from being advertised.
+- **route-map NULL-ADVERT deny 10:**  
+  This specific line blocks the advertisement of the 12.31.126.0/24 network from being advertised to our BGP peers.
 
-- **ip prefix-list BLOCK-ROUTE seq 5 deny 12.31.126.0/24:** 
-Defines a prefix list to block the advertisement of 12.31.126.0/24.
+- **ip prefix-list BLOCK-ROUTE seq 5 deny 12.31.126.0/24:**  
+  This creates a prefix list to explicitly block the 12.31.126.0/24 network from being advertised. It ensures that unwanted routes are filtered out.
 
-
-__Summary:__
-- a: The best BGP attributes to change are Weight and LocPrf to shift traffic from AS 30 to AS 20.
-- b: Yes, a "match" clause should be used to identify which routes to modify in the route map.
-- c: The route map should be applied to the BGP session with AS 30 "in" and BGP session with AS 30 "out" to influence both incoming and outgoing traffic.
-- d: A sample BGP configuration is provided to advertise a network and block a specific route using a null advertisement.
+### Summary: <a name="summary"></a>
+- **a:** The most effective BGP attributes to modify in the route map are **Weight** and **LocPrf**. Adjusting these will help shift traffic away from AS 30 and towards AS 20, aligning with the desired routing strategy.
+- **b:** Yes, using a "match" clause is essential in this route map. It allows you to target specific routes that need to be modified, providing flexibility and control over which paths are adjusted.
+- **c:** The route map should be applied to both the **BGP session with AS 30 "in"** and the **BGP session with AS 30 "out"**. This ensures we influence both incoming and outgoing traffic, helping to control the flow of data through the network.
+- **d:** A sample BGP configuration is provided, demonstrating how to advertise a network and block a specific route using a null advertisement. This configuration ensures that the network behaves as intended by controlling route advertisements and influencing traffic flow.
