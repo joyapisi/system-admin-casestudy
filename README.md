@@ -1,4 +1,6 @@
 # NCBA system-admin-casestudy
+<img src="images/logo.png" alt="Project Logo" width="120" height="120">
+
 ## Question 1 
 
 Briefly describe the role of the following in networking environment. Draw the diagrammatic representation depicting the same. 
