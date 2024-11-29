@@ -83,7 +83,7 @@ any other device to use for connectivity
 ## MPLS VPN with IPsec Encryption <a name="MPLS-IPsec"></a>
 For this question, I shall use MPLS VPN which provides high performance, security, and scalability. MPLS efficiently connects multiple sites over a service provider’s network. When combined with IPsec encryption, it would ensure the confidentiality and integrity of the data being exchanged between NCBA and the third party.
 
-#### Benefits/Reasons for Using MPLS VPN in this Scenario
+### Benefits/Reasons for Using MPLS VPN in this Scenario
 
 __Security:__ MPLS VPNs provide private, isolated paths across a service provider’s network, reducing exposure to potential external threats. When combined with IPsec, it ensures end-to-end encryption for data security.
 
