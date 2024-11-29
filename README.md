@@ -1,7 +1,7 @@
 # NCBA system-admin-casestudy
 <img src="images/logo.png" alt="Project Logo" width="120" height="120">
 
-# 📗 Table of Contents
+### 📗 Table of Contents
 
 1. [👩🏾‍💻Question 1](#q1)
   - [🛠️ VPN](#VPN)
