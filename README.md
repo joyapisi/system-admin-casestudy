@@ -3,27 +3,27 @@
 
 # 📗 Table of Contents
 
-1. [🛜 Question 1](#q1)
-  - [🛠 VPN](#vpn)
-  - [🛠 MPLS](#MPLS)
-  - [🛠 OSPF](#OSPF)
-  - [🛠 BGP](#BGP)
-2. [🛜 Question 2](#q2)
-  - [🛠 MPLS VPN with IPsec Encryption](#MPLS-IPsec)
-  - [🛠 MPLS VPN Configuration Process](#MPLS-config)  
-  - [🛠   A Configuration Example](#config-example)  
-3. [🛜 Question 3](#q3)
-  - [🛠   BGP Route Map Configuration](#BGP-Route-Map)  
-  - [🛠   Question 3 a](#BGP-Attr)  
-  - [🛠   Question 3 b](#Match-clause)  
-  - [🛠   Question 3 c](#apply-route-map)  
-  - [🛠   Question 3 d](#sample-BGP-config)  
+1. [👩🏾‍💻Question 1](#q1)
+  - [🛠️ VPN](#VPN)
+  - [🛠️ MPLS](#MPLS)
+  - [🛠️ OSPF](#OSPF)
+  - [🛠️ BGP](#BGP)
+2. [👩🏾‍💻 Question 2](#q2)
+  - [🚀 MPLS VPN with IPsec Encryption](#MPLS-IPsec)
+  - [🚀 MPLS VPN Configuration Process](#MPLS-config)  
+  - [🚀 A Configuration Example](#config-example)  
+3. [👩🏾‍💻 Question 3](#q3)
+  - [⚒️ BGP Route Map Configuration](#BGP-Route-Map)  
+  - [⚒️ Question 3 a](#BGP-Attr)  
+  - [⚒️ Question 3 b](#Match-clause)  
+  - [⚒️ Question 3 c](#apply-route-map)  
+  - [⚒️ Question 3 d](#sample-BGP-config)  
 
 ## Question 1 <a name="q1"></a>
 
 Briefly describe the role of the following in networking environment. Draw the diagrammatic representation depicting the same.  
 
-a. **VPN (Virtual Private Network)**
+a. **VPN (Virtual Private Network)** <a name="VPN"></a>
 
 The role of a VPN is that it is used to provide encrypted security when external users are remotely accessing a private network. The type of security that a VPN offers includes ensuring authorised access, and secure data transmission through an encrypted format.
 
@@ -33,7 +33,7 @@ Below is a diagram depicting a remote entity securely connecting to a private ne
 <[Remote Entity/User/Device] ----> [VPN Tunnel] ----> [Private Network]
 ```
 
-b. **MPLS (Multiprotocol Label Switching)**
+b. **MPLS (Multiprotocol Label Switching)** <a name="MPLS"></a>
 
 An MPLS in a networking environment takes the role of using short path labels to transmit data from one node to another. It helps to avoid using long network addresses and ensures efficiency through quick transmission of data, management of traffic, trafic routing control and scalability.
 
@@ -43,7 +43,7 @@ Diagram:
 [Client A] ----> [MPLS Network] ----> [Client B]
 ```
 
-c. **OSPF (Open Shortest Path First)**
+c. **OSPF (Open Shortest Path First)** <a name="OSPF"></a>
 OSPF works as a routing protocol that links states and is highly adaptable. It is ideal for large networks. It helps to find the best data transmission path in independent systems.
 
 Diagram:
@@ -53,7 +53,7 @@ Diagram:
 [Router B] ---|  
 ```
 
-d. **BGP (Border Gateway Protocol)**
+d. **BGP (Border Gateway Protocol)** <a name="BGP"></a>
 The role of a BGP is to set a standard way of communicating between path vectors when various autonomous systems (ASes) exchange routing information on the internet. A BGP is dominantly used in large-scale networks and ensures that data crosses through the most efficient path when being interchanged on the internet.
 
 ```css
